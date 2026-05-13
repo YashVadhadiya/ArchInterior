@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArchInterior Design — Thoughtful Spaces. Timeless Living.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #8A6A4F;
+    --secondary: #C5A27D;
+    --accent: #E7D3BC;
+    --bg: #F7F3EE;
+    --surface: #FFFFFF;
+    --surface-2: #F1EAE3;
+    --text: #2B241F;
+    --text-muted: #6D625A;
+    --border: #E4D9CF;
+    --success: #64856D;
+    --shadow-sm: 0 8px 24px rgba(43,36,31,0.05);
+    --shadow-md: 0 18px 48px rgba(43,36,31,0.09);
+    --shadow-lg: 0 30px 80px rgba(43,36,31,0.14);
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-xl: 32px;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.72;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* ── UTILITY ── */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  .serif { font-family: var(--serif); }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: rgba(138,106,79,0.1);
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 32px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--r-md);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  }
+  .btn-primary:hover {
+    background: #7A5C43;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 32px;
+    background: transparent;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+    border-radius: var(--r-md);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-outline:hover {
+    background: rgba(138,106,79,0.06);
+    transform: translateY(-2px);
+  }
+
+  /* ── FADE IN ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s cubic-bezier(0.23,1,0.32,1), transform 0.75s cubic-bezier(0.23,1,0.32,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 40px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(247,243,238,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  nav.scrolled {
+    border-bottom-color: var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .nav-logo span { color: var(--primary); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { font-size: 14px; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 100px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(to bottom, rgba(43,36,31,0.18) 0%, rgba(43,36,31,0.62) 100%),
+      url('https://images.pexels.com/photos/31817163/pexels-photo-31817163.jpeg?auto=compress&cs=tinysrgb&w=1920&dpr=1') center/cover no-repeat;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(46px, 6vw, 78px);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.78);
+    max-width: 500px;
+    line-height: 1.65;
+    margin-bottom: 44px;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    right: 48px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.55);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero-scroll-line {
+    width: 48px;
+    height: 1px;
+    background: rgba(255,255,255,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.8);
+    animation: scrollLine 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* ── TRUST STRIP ── */
+  .trust {
+    background: var(--surface);
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .trust-item {
+    background: var(--surface);
+    padding: 44px 48px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .trust-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--r-sm);
+    background: rgba(138,106,79,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+  }
+  .trust-num {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .trust-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .trust-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-header { margin-bottom: 64px; }
+  .section-header .tag { margin-bottom: 18px; }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(34px, 3.5vw, 52px);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--primary); }
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 540px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── SERVICES ── */
+  .services { padding: 112px 0; }
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+    gap: 32px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+  .service-card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+  .service-card-body { padding: 28px; }
+  .service-number {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--secondary);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .service-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .service-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .service-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+  }
+  .service-link svg { transition: transform 0.2s; }
+  .service-card:hover .service-link svg { transform: translateX(4px); }
+
+  /* ── WHY US ── */
+  .why {
+    background: var(--text);
+    padding: 112px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .why::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: rgba(138,106,79,0.12);
+    pointer-events: none;
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .why-left .tag { background: rgba(197,162,125,0.15); color: var(--secondary); }
+  .why-left .section-title { color: #F7F3EE; }
+  .why-left .section-sub { color: rgba(247,243,238,0.6); }
+  .why-points { margin-top: 48px; display: flex; flex-direction: column; gap: 28px; }
+  .why-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(247,243,238,0.1);
+  }
+  .why-point:last-child { border-bottom: none; padding-bottom: 0; }
+  .why-dot {
+    width: 10px; height: 10px;
+    background: var(--secondary);
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .why-point-title { font-size: 16px; font-weight: 500; color: #F7F3EE; margin-bottom: 4px; }
+  .why-point-text { font-size: 14px; color: rgba(247,243,238,0.55); line-height: 1.65; }
+  .why-right {
+    position: relative;
+  }
+  .why-img-main {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: var(--r-xl);
+    display: block;
+  }
+  .why-img-badge {
+    position: absolute;
+    bottom: 32px; left: -32px;
+    background: var(--surface);
+    border-radius: var(--r-lg);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-lg);
+    min-width: 200px;
+  }
+  .why-badge-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .why-badge-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── PORTFOLIO ── */
+  .portfolio { padding: 112px 0; }
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+  .port-card {
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .port-card:first-child { grid-row: 1 / 3; }
+  .port-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s ease;
+    min-height: 280px;
+    image-rendering: auto;
+  }
+  .port-card:first-child img { min-height: 580px; object-position: center 35%; }
+  .port-card:hover img { transform: scale(1.04); }
+  .port-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(43,36,31,0.75) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    padding: 28px;
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .port-card:hover .port-overlay { opacity: 1; }
+  .port-info { color: #fff; }
+  .port-type { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .port-name { font-family: var(--serif); font-size: 22px; font-weight: 400; }
+
+  /* ── FOUNDER ── */
+  .founder {
+    background: var(--surface-2);
+    padding: 112px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .founder-img-wrap { position: relative; }
+  .founder-img {
+    width: 100%;
+    height: 580px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: var(--r-xl);
+    display: block;
+  }
+  .founder-accent {
+    position: absolute;
+    top: -24px; right: -24px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 2px dashed var(--border);
+    z-index: -1;
+  }
+  .founder-quote {
+    font-family: var(--serif);
+    font-size: clamp(26px, 2.8vw, 38px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 28px 0;
+    padding-left: 28px;
+    border-left: 3px solid var(--secondary);
+  }
+  .founder-name {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text);
+    margin-top: 36px;
+  }
+  .founder-title { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+  .founder-bio {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-top: 24px;
+    font-weight: 300;
+  }
+
+  /* ── PROCESS ── */
+  .process { padding: 112px 0; }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 72px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 32px; left: 10%; right: 10%;
+    height: 1px;
+    background: var(--border);
+    z-index: 0;
+  }
+  .process-step {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 16px;
+  }
+  .step-dot {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--primary);
+    position: relative;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  }
+  .process-step:hover .step-dot {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+    transform: scale(1.1);
+  }
+  .step-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+  .step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: var(--surface);
+    padding: 112px 0;
+    border-top: 1px solid var(--border);
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+  .testi-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 36px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+  .testi-quote {
+    font-family: var(--serif);
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .testi-text {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.75;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+  .testi-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .testi-loc { font-size: 12px; color: var(--text-muted); }
+  .stars { color: var(--secondary); font-size: 13px; letter-spacing: 2px; margin-bottom: 16px; }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 112px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    bottom: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197,162,125,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: flex-start;
+  }
+  .contact-info { padding-top: 8px; }
+  .contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-detail:first-of-type { border-top: 1px solid var(--border); }
+  .contact-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--r-sm);
+    background: rgba(138,106,79,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .contact-detail-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+  .contact-detail-value { font-size: 15px; color: var(--text); font-weight: 400; }
+
+  /* Form */
+  .contact-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 44px;
+    box-shadow: var(--shadow-sm);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    height: 52px;
+    padding: 0 18px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group textarea {
+    height: 120px;
+    padding: 16px 18px;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(138,106,79,0.12);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--text-muted); font-weight: 300; }
+  .form-submit { width: 100%; height: 54px; font-size: 16px; border-radius: var(--r-md); margin-top: 8px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text);
+    padding: 80px 0 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(247,243,238,0.1);
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: #F7F3EE;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .footer-logo span { color: var(--secondary); }
+  .footer-tagline { font-size: 14px; color: rgba(247,243,238,0.5); line-height: 1.7; max-width: 280px; font-weight: 300; }
+  .footer-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .social-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(247,243,238,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(247,243,238,0.6);
+    font-size: 16px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-btn:hover { border-color: var(--secondary); color: var(--secondary); }
+  .footer-heading {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(247,243,238,0.45);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a {
+    font-size: 14px;
+    color: rgba(247,243,238,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+  .footer-links a:hover { color: var(--secondary); }
+  .footer-bottom {
+    padding-top: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy { font-size: 13px; color: rgba(247,243,238,0.35); font-weight: 300; }
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a { font-size: 13px; color: rgba(247,243,238,0.35); text-decoration: none; font-weight: 300; }
+  .footer-legal a:hover { color: rgba(247,243,238,0.7); }
+
+  /* ── STICKY CTA ── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 200;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  .sticky-cta.show { transform: none; opacity: 1; }
+  .sticky-cta a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: var(--shadow-lg);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .sticky-cta a:hover { background: #7A5C43; transform: scale(1.04); }
+  .sticky-dot { width: 8px; height: 8px; border-radius: 50%; background: #a3e635; animation: pulse 2s infinite; }
+  @keyframes pulse {
+    0%,100%{ opacity: 1; transform: scale(1); }
+    50%{ opacity: 0.6; transform: scale(1.3); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .container { padding: 0 28px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .port-card:first-child { grid-row: auto; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .process-steps::before { display: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .container { padding: 0 20px; }
+    .hero { padding-bottom: 72px; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-img-badge { left: 16px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .founder-grid { grid-template-columns: 1fr; }
+    .founder-img { height: 380px; }
+    .process-steps { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .sticky-cta { bottom: 20px; right: 20px; }
+    .services-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo"><span>Arch</span>Interior</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="btn-primary nav-cta" style="height:40px;padding:0 22px;font-size:13px;">Book Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-tag">✦ Premium Residential Interior Design</span>
+      <h1>Where <em>Dreams</em><br>Find Their Space</h1>
+      <p>Transforming homes into living art — from villa penthouses to intimate bungalows. Timeless design within a real-world budget.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary" style="background:#C5A27D;color:#2B241F;">Book Free Consultation</a>
+        <a href="#portfolio" class="btn-outline" style="border-color:rgba(255,255,255,0.45);color:#fff;">View Our Work</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item reveal">
+        <div class="trust-icon">🏆</div>
+        <div>
+          <div class="trust-num">7+</div>
+          <div class="trust-label">Years of Experience</div>
+          <div class="trust-desc">Crafting premium interiors across Gujarat and beyond, from concept to completion.</div>
+        </div>
+      </div>
+      <div class="trust-item reveal reveal-delay-1">
+        <div class="trust-icon">✦</div>
+        <div>
+          <div class="trust-num">200+</div>
+          <div class="trust-label">Homes Transformed</div>
+          <div class="trust-desc">Every project is treated as a unique canvas — no templated solutions, ever.</div>
+        </div>
+      </div>
+      <div class="trust-item reveal reveal-delay-2">
+        <div class="trust-icon">❤</div>
+        <div>
+          <div class="trust-num">98%</div>
+          <div class="trust-label">Client Satisfaction</div>
+          <div class="trust-desc">Our client-first approach means we stay until every detail is exactly right.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-header" style="margin-bottom:0;">
+        <div class="tag reveal">Our Services</div>
+        <h2 class="section-title reveal reveal-delay-1">Every Space,<br><em>Beautifully Considered</em></h2>
+      </div>
+      <div class="reveal reveal-delay-2" style="flex-shrink:0;">
+        <a href="#contact" class="btn-outline">View All Services</a>
+      </div>
+    </div>
+    <div class="services-grid">
+
+      <a href="#contact" class="service-card reveal">
+        <img loading="lazy" src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop&dpr=1" alt="Penthouse Interior" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-number">01</div>
+          <div class="service-title">Penthouse Interiors</div>
+          <div class="service-desc">Sky-high living deserves sky-high design. We sculpt elevated spaces with curated materials and commanding aesthetics.</div>
+          <span class="service-link">Let's Discuss <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-card reveal reveal-delay-1">
+        <img loading="lazy" src="https://images.pexels.com/photos/4468806/pexels-photo-4468806.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop&dpr=1" alt="Villa Interior" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-number">02</div>
+          <div class="service-title">Villa & Bungalow Design</div>
+          <div class="service-desc">Spacious homes with character. We blend indoor-outdoor harmony with warm material palettes and functional elegance.</div>
+          <span class="service-link">Let's Discuss <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-card reveal reveal-delay-2">
+        <img loading="lazy" src="https://images.pexels.com/photos/35189706/pexels-photo-35189706.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop&dpr=1" alt="Modular Kitchen" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-number">03</div>
+          <div class="service-title">Modular Kitchens</div>
+          <div class="service-desc">The heart of every home — precision-engineered for function, finished for beauty. Layouts that inspire daily.</div>
+          <span class="service-link">Let's Discuss <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-card reveal">
+        <img loading="lazy" src="https://images.pexels.com/photos/31737843/pexels-photo-31737843.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop&dpr=1" alt="Bedroom Design" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-number">04</div>
+          <div class="service-title">Bedroom Sanctuaries</div>
+          <div class="service-desc">Restful, refined, and deeply personal. Bedroom design that balances private comfort with aesthetic identity.</div>
+          <span class="service-link">Let's Discuss <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-card reveal reveal-delay-1">
+        <img loading="lazy" src="https://images.pexels.com/photos/5179534/pexels-photo-5179534.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop&dpr=1" alt="3D Visualization" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-number">05</div>
+          <div class="service-title">3D Visualization</div>
+          <div class="service-desc">See your home before a single wall is touched. Photorealistic renders that make decisions feel certain, not guesswork.</div>
+          <span class="service-link">Let's Discuss <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-card reveal reveal-delay-2">
+        <img loading="lazy" src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop&dpr=1" alt="Turnkey Interior" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-number">06</div>
+          <div class="service-title">Turnkey Execution</div>
+          <div class="service-desc">Concept to completion, with us managing every detail. You move in. We handle everything in between.</div>
+          <span class="service-link">Let's Discuss <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="about">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="tag reveal">Why Choose Us</div>
+        <h2 class="section-title reveal reveal-delay-1">Design That<br><em style="color:var(--secondary)">Actually Lives</em><br>With You</h2>
+        <p class="section-sub reveal reveal-delay-2" style="color:rgba(247,243,238,0.6);">We believe great design isn't about impressing guests. It's about making every ordinary moment feel beautiful.</p>
+        <div class="why-points">
+          <div class="why-point reveal">
+            <div class="why-dot"></div>
+            <div>
+              <div class="why-point-title">Budget-Conscious Luxury</div>
+              <div class="why-point-text">We find the finest materials and finishes within your actual budget — no compromises on quality, only smarter choices.</div>
+            </div>
+          </div>
+          <div class="why-point reveal reveal-delay-1">
+            <div class="why-dot"></div>
+            <div>
+              <div class="why-point-title">Deeply Client-Centric Process</div>
+              <div class="why-point-text">Your lifestyle drives every decision. We listen first, design second, and never stop until the space feels like you.</div>
+            </div>
+          </div>
+          <div class="why-point reveal reveal-delay-2">
+            <div class="why-dot"></div>
+            <div>
+              <div class="why-point-title">End-to-End Accountability</div>
+              <div class="why-point-text">One point of contact from first sketch to final handover. No surprises, no handoffs, no gaps in communication.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-right reveal reveal-delay-1">
+        <img loading="lazy" src="https://images.pexels.com/photos/19689230/pexels-photo-19689230.jpeg?auto=compress&cs=tinysrgb&w=900&dpr=1" alt="Premium Interior" class="why-img-main">
+        <div class="why-img-badge">
+          <div class="why-badge-num">₹500+</div>
+          <div class="why-badge-label">Crore in delivered projects</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="portfolio-header">
+      <div>
+        <div class="tag reveal">Portfolio</div>
+        <h2 class="section-title reveal reveal-delay-1">Spaces That<br><em>Speak For Themselves</em></h2>
+      </div>
+    </div>
+    <div class="portfolio-grid">
+      <div class="port-card reveal">
+        <img loading="lazy" src="https://images.pexels.com/photos/5698004/pexels-photo-5698004.jpeg?auto=compress&cs=tinysrgb&w=900&dpr=1" alt="Villa Living Room">
+        <div class="port-overlay">
+          <div class="port-info">
+            <div class="port-type">Villa · Rajkot</div>
+            <div class="port-name">The Mehta Residence</div>
+          </div>
+        </div>
+      </div>
+      <div class="port-card reveal reveal-delay-1">
+        <img loading="lazy" src="https://images.pexels.com/photos/20439293/pexels-photo-20439293.jpeg?auto=compress&cs=tinysrgb&w=700&dpr=1" alt="Modern Bedroom">
+        <div class="port-overlay">
+          <div class="port-info">
+            <div class="port-type">Master Bedroom · Surat</div>
+            <div class="port-name">Serene Retreat</div>
+          </div>
+        </div>
+      </div>
+      <div class="port-card reveal reveal-delay-2">
+        <img loading="lazy" src="https://images.pexels.com/photos/10827396/pexels-photo-10827396.jpeg?auto=compress&cs=tinysrgb&w=700&dpr=1" alt="Modern Kitchen">
+        <div class="port-overlay">
+          <div class="port-info">
+            <div class="port-type">Kitchen · Ahmedabad</div>
+            <div class="port-name">Minimal Kitchen Studio</div>
+          </div>
+        </div>
+      </div>
+      <div class="port-card reveal">
+        <img loading="lazy" src="https://images.pexels.com/photos/2736139/pexels-photo-2736139.jpeg?auto=compress&cs=tinysrgb&w=700&dpr=1" alt="Living Room">
+        <div class="port-overlay">
+          <div class="port-info">
+            <div class="port-type">Living Room · Rajkot</div>
+            <div class="port-name">Contemporary Family Space</div>
+          </div>
+        </div>
+      </div>
+      <div class="port-card reveal reveal-delay-1">
+        <img loading="lazy" src="https://images.pexels.com/photos/19846360/pexels-photo-19846360.jpeg?auto=compress&cs=tinysrgb&w=700&dpr=1" alt="Penthouse">
+        <div class="port-overlay">
+          <div class="port-info">
+            <div class="port-type">Penthouse · Vadodara</div>
+            <div class="port-name">The Skyline Suite</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder">
+  <div class="container">
+    <div class="founder-grid">
+      <div class="founder-img-wrap reveal">
+        <img loading="lazy" src="https://images.pexels.com/photos/3760529/pexels-photo-3760529.jpeg?auto=compress&cs=tinysrgb&w=800&dpr=1" alt="Founder - Interior Designer" class="founder-img">
+        <div class="founder-accent"></div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="tag">Meet the Visionary</div>
+        <blockquote class="founder-quote">
+          "A home should feel like an extension of who you are — not just where you live."
+        </blockquote>
+        <p class="founder-bio">
+          With over seven years of experience transforming residential spaces across Gujarat, I founded ArchInterior with a single belief: that extraordinary design shouldn't be reserved for extraordinary budgets.
+        </p>
+        <p class="founder-bio">
+          My approach begins with deep listening. Before I draw a single line, I understand how a family lives — the morning rituals, the evening rituals, the moments that matter most. That understanding becomes the foundation of every design decision.
+        </p>
+        <div class="founder-name">Chintan Modi</div>
+        <div class="founder-title">Principal Designer & Founder, ArchInterior</div>
+        <div style="display:flex;gap:16px;margin-top:28px;">
+          <a href="#contact" class="btn-primary">Connect with Me</a>
+          <a href="#process" class="btn-outline">Our Process</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-header" style="text-align:center;">
+      <div class="tag reveal">How We Work</div>
+      <h2 class="section-title reveal reveal-delay-1">From Blank Walls<br><em>to Beautiful Homes</em></h2>
+      <p class="section-sub reveal reveal-delay-2" style="margin:0 auto;">A refined, transparent process that keeps you informed and excited at every stage.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-dot">01</div>
+        <div class="step-title">Discovery Call</div>
+        <div class="step-desc">We begin by understanding your vision, lifestyle, timeline, and budget without any pressure.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-dot">02</div>
+        <div class="step-title">Style Direction</div>
+        <div class="step-desc">We define your aesthetic — moodboards, material palettes, and concept directions that excite you.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-dot">03</div>
+        <div class="step-title">Design & 3D</div>
+        <div class="step-desc">Full 3D renders let you walk through your future home before a single nail is driven.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-dot">04</div>
+        <div class="step-title">Execution</div>
+        <div class="step-desc">Our in-house team manages the entire build with weekly photo updates and site supervision.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="step-dot">05</div>
+        <div class="step-title">Handover</div>
+        <div class="step-desc">We hand over your home styled, detailed, and ready to live in — nothing left unfinished.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="tag reveal">Client Stories</div>
+      <h2 class="section-title reveal reveal-delay-1">Words From<br><em>Happy Homes</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">ArchInterior completely transformed our 4BHK in Rajkot. What I love most is that Chintan actually listened — the final design is us, not some catalog idea. Every room feels intentional and personal.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RP</div>
+          <div>
+            <div class="testi-name">Riya Patel</div>
+            <div class="testi-loc">Rajkot · Villa Project</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">We were on a strict budget and honestly nervous. The team not only stayed within it — they delivered something far beyond what we imagined possible. The modular kitchen alone gets compliments every day.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AS</div>
+          <div>
+            <div class="testi-name">Amit Shah</div>
+            <div class="testi-loc">Ahmedabad · 3BHK Flat</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">The 3D renders were so accurate — there were zero surprises during execution. Professional, transparent, and creatively brilliant. Our penthouse has become the talk of the building.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">NM</div>
+          <div>
+            <div class="testi-name">Neha Mehta</div>
+            <div class="testi-loc">Surat · Penthouse</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="tag reveal">Get in Touch</div>
+        <h2 class="section-title reveal reveal-delay-1">Let's Build<br><em>Your Dream Home</em></h2>
+        <p class="section-sub reveal reveal-delay-2">Book a free 30-minute consultation. No commitments, no pressure — just a conversation about your space and what it could become.</p>
+
+        <div class="contact-detail reveal" style="margin-top:40px;">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-detail-label">Studio Location</div>
+            <div class="contact-detail-value">Rajkot, Gujarat — Serving all major cities</div>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-1">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Phone / WhatsApp</div>
+            <div class="contact-detail-value">+91 98765 43210</div>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-2">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value">hello@archinterior.com</div>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-3">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-detail-label">Studio Hours</div>
+            <div class="contact-detail-value">Mon–Sat: 10:00 AM – 7:00 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal reveal-delay-2">
+        <h3 style="font-family:var(--serif);font-size:26px;font-weight:500;color:var(--text);margin-bottom:8px;letter-spacing:-0.01em;">Book a Free Consultation</h3>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:32px;line-height:1.6;">Tell us a bit about your project and we'll be in touch within 24 hours.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Riya Patel">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+91 98765 43210">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>Project Type</label>
+          <select>
+            <option value="">Select your project type</option>
+            <option>Penthouse / Luxury Apartment</option>
+            <option>Villa / Bungalow</option>
+            <option>3BHK / 4BHK Flat</option>
+            <option>Modular Kitchen Only</option>
+            <option>Commercial Space</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Us About Your Space</label>
+          <textarea placeholder="Share your vision, approximate area, city, and budget range..."></textarea>
+        </div>
+        <button class="btn-primary form-submit" onclick="handleSubmit(this)">
+          Send Consultation Request →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><span>Arch</span>Interior</div>
+        <p class="footer-tagline">Thoughtful design, reliable execution, and beautiful spaces within a realistic budget. Serving Gujarat and beyond since 2017.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" title="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-btn" title="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+          <a href="#" class="social-btn" title="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Penthouse Interiors</a></li>
+          <li><a href="#services">Villa & Bungalow</a></li>
+          <li><a href="#services">Modular Kitchens</a></li>
+          <li><a href="#services">Bedroom Design</a></li>
+          <li><a href="#services">3D Visualization</a></li>
+          <li><a href="#services">Turnkey Execution</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#process">Design Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Experience Center</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Project Areas</div>
+        <ul class="footer-links">
+          <li><a href="#">Rajkot</a></li>
+          <li><a href="#">Ahmedabad</a></li>
+          <li><a href="#">Surat</a></li>
+          <li><a href="#">Vadodara</a></li>
+          <li><a href="#">Gandhinagar</a></li>
+          <li><a href="#">Pan Gujarat</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 ArchInterior Design. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#contact">
+    <div class="sticky-dot"></div>
+    Book Free Consultation
+  </a>
+</div>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('stickyCta').classList.toggle('show', window.scrollY > 400);
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(btn) {
+    btn.textContent = '✓ Request Sent — We\'ll be in touch within 24 hours!';
+    btn.style.background = '#64856D';
+    btn.disabled = true;
+  }
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
